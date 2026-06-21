@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Hiçliğe Mesaj Gönder</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            padding-top: 30px;
+            transition: font-family 0.2s;
+        }
+        
+        .FontSeciciAlani {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .FontButon {
+            border: 2px solid #007acc;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .secili {
+            background-color: #007acc;
+            color: white;
+        }
+        
+        .seciliDegil {
+            background-color: transparent;
+            color: #007acc;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .AciklamaYazisi {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 400px;
+            height: 120px;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            resize: none;
+            outline: none;
+            font-family: inherit; 
+            background-color: white;
+            color: black;
+        }
+        textarea:focus {
+            border-color: #007acc;
+        }
+        .ButonKutusu {
+            margin-top: 15px;
+            height: 50px;
+        }
+        .MaviButon {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .MaviButon:hover {
+            background-color: #005999;
+        }
+        .MaviButon:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* INFO ALANI */
+        .InfoKutusu {
+            display: none;
+            margin-top: 30px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: #005999;
+        }
+        .InfoSimgesi {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background-color: #007acc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+            font-size: 14px;
+        }
+
+        #dahaFazlaButonu {
+            color: #005999;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        /* CUSTOM ALERT (MODAL) ARKA PLANI */
+        .OzelAlertArkaplan {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* CUSTOM ALERT KUTUSU */
+        .OzelAlertKutusu {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            width: 450px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #007acc;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+        
+        .OzelAlertMetni {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: center; 
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+            font-family: inherit; 
+        }
+
+        /* "H A Y I R" HARFLERİNİN EKRANIN TAM ORTASINDA BÜYÜK DURMASI İÇİN SINIF */
+        .MetniBuyut {
+            font-size: 36px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            color: #111 !important;
+            letter-spacing: 5px;
+            padding: 20px 0;
+        }
+        
+        .AlertButonAlani {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .OzelAlertButon {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit; 
+        }
+        .OzelAlertButon:hover {
+            background-color: #005999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="FontSeciciAlani">
+        <button id="btnCalibri" class="FontButon secili" onclick="fontDegistir('calibri')">calibri</button>
+        <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunmasi zor, tavsiye edilmez)</button>
+    </div>
+
+    <h1>BOŞLUĞA MESAJ GÖNDER</h1>
+    
+    <div class="AciklamaYazisi">bosluga mesaj gondermek icin asagiya mesajini yaz!</div>
+    
+    <textarea id="mesajAlani" placeholder="mesajini yaz..."></textarea>
+    
+    <div class="ButonKutusu">
+        <button id="aksiyonButonu" class="MaviButon" onclick="hichligeGonder()">bosluga gonder</button>
+    </div>
+
+    <div id="infoSonuc" class="InfoKutusu">
+        <span class="InfoSimgesi">i</span>
+        <span>tebrikler! hiclige bir mesaj gonderdiniz! mesajin hicbir yere ulasmayacak!!! <span id="dahaFazlaButonu" onclick="dahaFazlaTiklandi()">Daha fazla bilgi...</span></span>
+    </div>
+
+    <div id="gizemliAlert" class="OzelAlertArkaplan">
+        <div class="OzelAlertKutusu">
+            <div id="alertMetinAlani" class="OzelAlertMetni"></div>
+            <div id="alertButonAlani" class="AlertButonAlani"></div>
+        </div>
+    </div>
+
+    <script>
+        var zaferSesi = new Audio("robloxvictory.mp3");
+        var tiklamaSayisi = 0; 
+        var eggyTetiklendi = false; 
+
+        function fontDegistir(fontAdi) {
+            var btnCalibri = document.getElementById("btnCalibri");
+            var btnComic = document.getElementById("btnComic");
+
+            if (fontAdi === 'calibri') {
+                document.body.style.fontFamily = "'Calibri', sans-serif";
+                btnCalibri.className = "FontButon secili";
+                btnComic.className = "FontButon seciliDegil";
+            } else if (fontAdi === 'comic') {
+                document.body.style.fontFamily = "'Comic Sans MS', cursive, sans-serif";
+                btnCalibri.className = "FontButon seciliDegil";
+                btnComic.className = "FontButon secili";
+            }
+        }
+
+        function hichligeGonder() {
+            var textareaIcerik = document.getElementById("mesajAlani").value;
+            var buton = document.getElementById("aksiyonButonu");
+            var infoKutu = document.getElementById("infoSonuc");
+            
+            if(textareaIcerik.trim() === "") {
+                alert("Önce hiçliğe söyleyecek bir şeyler yazmalısın!");
+                return;
+            }
+            
+            infoKutu.style.display = "none";
+            buton.disabled = true;
+            buton.innerHTML = "gonderiliyor";
+            
+            setTimeout(function() { buton.innerHTML = "az kaldi"; }, 1000);
+            setTimeout(function() { buton.innerHTML = "cok az kaldi"; }, 2000);
+            setTimeout(function() { buton.innerHTML = "harbi az kaldi"; }, 3000);
+            
+            // 0.13 saniye önceki cuk oturan ses zamanlaman
+            setTimeout(function() {
+                zaferSesi.currentTime = 0; 
+                zaferSesi.play().catch(function(e){});
+            }, 3870); 
+            
+            setTimeout(function() {
+                buton.innerHTML = "gonderildi!";
+                infoKutu.style.display = "flex";
+                
+                if(eggyTetiklendi) {
+                    document.getElementById("dahaFazlaButonu").style.display = "none";
+                }
+                
+                document.getElementById("mesajAlani").value = "";
+            }, 4000);
+            
+            setTimeout(function() {
+                buton.innerHTML = "bosluga gonder";
+                buton.disabled = false;
+            }, 5000);
+        }
+
+        function dahaFazlaTiklandi() {
+            if(eggyTetiklendi) return; 
+            
+            tiklamaSayisi++;
+            var metinKutusu = document.getElementById("alertMetinAlani");
+            var butonKutusu = document.getElementById("alertButonAlani");
+            
+            metinKutusu.className = "OzelAlertMetni";
+            if(tiklamaSayisi === 10) {
+                metinKutusu.style.textAlign = "justify";
+            } else {
+                metinKutusu.style.textAlign = "center";
+            }
+            
+            document.getElementById("gizemliAlert").style.display = "flex";
+
+            if (tiklamaSayisi === 10) {
+                eggyTetiklendi = true; 
+                document.getElementById("dahaFazlaButonu").style.display = "none";
+
+                metinKutusu.innerHTML = "İnternetin o sonsuz dehlizlerinde, veri tabanlarının loş ışıklı koridorlarında ya da uyduların o havalı sinyal kulelerinde bu mesajı arama. Çünkü o mesaj şu an tam olarak olması gereken yerde: Kocaman bir hiçlikte.<br><br>Sen o butona bastığın an, klavyenden dökülen o harfler ne bir sunucuya yüklendi, ne bir yerlere kaydedildi, ne de dünyanın öbür ucundaki bir insanın ekranına bildirim olarak düştü. JavaScript kodunun o acımasız satırları, sen daha 'gönderildi!' yazısını görüp arkadan o nostaljik Roblox zafer sesini duyduğun o salisede, mesajını aldı ve tarayıcının geçici hafızasından sonsuza dek sildi.<br><br>Yani ne bir siber permanent uzmanı, ne bir veri analisti, ne de bir hacker senin buraya ne yazdığını asla öğrenemeyecek. Yazdığın o gizli itiraflar, iç döküşler, sinirlenip karaladığın cümleler ya da sadece can sıkıntısından salladığın kelimeler... Hepsi saniyeler içinde dijital bir toza dönüştü ve evrenin o mutlak sessizliğine karıştı.<br><br>İşin güzel tarafı da bu ya zaten. Bu site sana kimsenin seni dinlemediği, kimsenin seni yargılamayacağı ve yazdıklarının arkanda hiçbir iz bırakmayacağı o mutlak özgürlük alanını sunuyor. Mesajın hiçbir yere gitmedi, gitmeyecek ve sırf sen öyle istediğin için o boşluğun içinde kaybolup gitti.<br><br>Kısacası; için rahat olsun, boşluk sır tutmayı çok iyi bilir.";
+                
+                butonKutusu.innerHTML = `
+                    <button class="OzelAlertButon" onclick="kapatAlert()">hee simdi anladim</button>
+                    <button class="OzelAlertButon" onclick="birazDahaAnlat()">biraz daha anlat</button>
+                `;
+            } else {
+                metinKutusu.innerHTML = "gitmeyecek hicbir yere iste lan ne daha fazla bilgisi";
+                butonKutusu.innerHTML = `<button class="OzelAlertButon" onclick="kapatAlert()">tamam ya ne kiziyon</button>`;
+            }
+        }
+
+        function kapatAlert() {
+            document.getElementById("gizemliAlert").style.display = "none";
+        }
+
+        function birazDahaAnlat() {
+            var metinKutusu = document.getElementById("alertMetinAlani");
+            var butonKutusu = document.getElementById("alertButonAlani");
+
+            butonKutusu.innerHTML = ""; 
+            metinKutusu.innerHTML = "...";
+            metinKutusu.style.textAlign = "center";
+            metinKutusu.classList.add("MetniBuyut");
+
+            setTimeout(function() {
+                metinKutusu.innerHTML = ""; 
+                
+                var harfler = ["H", "A", "Y", "I", "R"];
+                var mevcutMetin = "";
+
+                harfler.forEach(function(harf, index) {
+                    setTimeout(function() {
+                        if (index === 0) {
+                            mevcutMetin = harf;
+                        } else {
+                            mevcutMetin += " " + harf;
+                        }
+                        metinKutusu.innerHTML = mevcutMetin;
+
+                        if (index === harfler.length - 1) {
+                            setTimeout(function() {
+                                butonKutusu.innerHTML = `<button class="OzelAlertButon" onclick="kapatAlert()">susuyorum...</button>`;
+                            }, 1000);
+                        }
+                    }, index * 1500); 
+                });
+
+            }, 2000); 
+        }
+    </script>
+
+</body>
+</html>
