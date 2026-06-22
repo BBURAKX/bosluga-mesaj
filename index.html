@@ -81,14 +81,14 @@
             font-family: inherit; 
             background-color: white;
             color: black;
-            transition: border-color 0.2s;
+            transition: border-color 0.3s ease; 
             display: block;
         }
         textarea:focus {
             border-color: #007acc;
         }
 
-        textarea.kufurHali {
+        textarea.jojoMidHali, textarea.kufurHali {
             border-color: #ff3333 !important;
         }
 
@@ -102,6 +102,7 @@
             font-family: inherit;
         }
 
+        /* Karakter Sayacı Genel Stili */
         .KarakterSayaci {
             position: absolute;
             bottom: -22px; 
@@ -110,6 +111,54 @@
             color: #666; 
             font-weight: bold;
             font-family: inherit;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        /* 67 Karakter Durumu İçin Özel Stil */
+        .sayac67 {
+            color: #007acc !important;
+            text-decoration: underline !important;
+            cursor: pointer;
+        }
+
+        /* Baloncuğu tam 67 sayısının merkezine ortalayan konumlandırma */
+        .SayacBaloncuk {
+            position: absolute;
+            bottom: 24px; 
+            left: 50%;
+            transform: translateX(-50%) translateY(5px); 
+            background-color: #333;
+            color: #fff;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Baloncuğun altındaki üçgen */
+        .SayacBaloncuk::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%); 
+            border-width: 6px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        /* Sadece sayac67 sınıfı varken hover olunca baloncuğu göster */
+        .sayac67:hover .SayacBaloncuk {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0); 
         }
 
         .ButonKutusu {
@@ -137,7 +186,6 @@
             cursor: not-allowed;
         }
 
-        /* GÜNCELLENDİ: Zorunlu Comic Sans kaldırıldı, aktif yazı tipini miras alıyor */
         .ButonHata {
             background-color: #ff3333 !important;
             color: white !important;
@@ -365,7 +413,11 @@
         <div class="TextareaKapsayici">
             <textarea id="mesajAlani" placeholder="mesajini yaz..." onkeydown="sabirsizlikKorumasi(event)" oninput="sayacGuncelle()"></textarea>
             <div id="sabirsizlikUyari" class="KufurUyariYazisi">azicik sabirli ol sabirli</div>
-            <div id="sayacAlani" class="KarakterSayaci">0</div>
+            
+            <div id="sayacAlani" class="KarakterSayaci">
+                <span id="sayacRakam">0</span>
+                <div class="SayacBaloncuk">hiç komik değil</div>
+            </div>
         </div>
         
         <div class="ButonKutusu">
@@ -423,17 +475,39 @@
             document.getElementById("gizemliAlert").style.display = "flex";
         };
 
+        // YENİ: Türkçe ve İngilizce büyük/küçük harf (i, ı, I, İ) farklarını tek merkezden algılayan fonksiyon
+        function jojoMidKontrolEt(metin) {
+            var temizMetin = metin.trim();
+            // jojo [mıid] varyasyonlarının tamamını yakalayan düzenli ifade (Regex)
+            var regex = /^jojo\s+[mıidMİID][ıidMİID][dD]$/i;
+            return regex.test(temizMetin);
+        }
+
         function sayacGuncelle() {
-            var icerik = document.getElementById("mesajAlani").value;
-            var sayacElementi = document.getElementById("sayacAlani");
+            var textarea = document.getElementById("mesajAlani");
+            var icerik = textarea.value;
+            var sayacKonteynir = document.getElementById("sayacAlani");
+            var rakamAlani = document.getElementById("sayacRakam");
             var uzunluk = icerik.length;
 
             if (uzunluk === 31) {
-                sayacElementi.innerHTML = "31 XD";
+                rakamAlani.innerHTML = "31 XD";
             } else {
-                sayacElementi.innerHTML = uzunluk;
+                rakamAlani.innerHTML = uzunluk;
             }
-            sayacElementi.style.color = "#666"; 
+
+            if (uzunluk === 67) {
+                sayacKonteynir.classList.add("sayac67");
+            } else {
+                sayacKonteynir.classList.remove("sayac67");
+            }
+
+            // GÜNCELLENDİ: Yeni jojo kontrol fonksiyonuna bağlandı
+            if (jojoMidKontrolEt(icerik)) {
+                textarea.classList.add("jojoMidHali");
+            } else {
+                textarea.classList.remove("jojoMidHali");
+            }
         }
 
         function rockstarGoster(durum) {
@@ -482,6 +556,7 @@
             var buton = document.getElementById("aksiyonButonu");
             var infoKutu = document.getElementById("infoSonuc");
             
+            // Jojo Peak kontrolü
             if(textareaIcerik.trim().toLowerCase() === "jojo peak") {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
@@ -517,6 +592,30 @@
                 return; 
             }
 
+            // GÜNCELLENDİ: Büyük/küçük, ı/i harf esnekliğiyle Jojo Mid hata mekanizması
+            if(jojoMidKontrolEt(textareaIcerik)) {
+                if (hataZamanlayici !== null) {
+                    clearTimeout(hataZamanlayici);
+                }
+
+                buton.classList.remove("sallaButonu");
+                void buton.offsetWidth; 
+                buton.classList.add("sallaButonu");
+
+                buton.classList.add("ButonHata");
+                buton.innerHTML = "hayir";
+
+                hataZamanlayici = setTimeout(function() {
+                    buton.classList.remove("ButonHata");
+                    buton.classList.remove("sallaButonu");
+                    buton.innerHTML = "bosluga gonder";
+                    hataZamanlayici = null;
+                }, 1000);
+
+                return;
+            }
+
+            // Boş bırakma kontrolü
             if(textareaIcerik.trim() === "") {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
