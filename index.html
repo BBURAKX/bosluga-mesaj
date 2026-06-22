@@ -18,11 +18,11 @@
             filter: blur(8px);
             pointer-events: none; 
         }
-
+ 
         #anaIcerik {
             transition: filter 0.5s ease; 
         }
-
+ 
         .FontSeciciAlani {
             margin-bottom: 30px;
             display: flex;
@@ -51,7 +51,7 @@
             background-color: transparent;
             color: #007acc;
         }
-
+ 
         h1 {
             font-size: 48px;
             font-weight: bold;
@@ -61,14 +61,14 @@
             font-size: 18px;
             margin-bottom: 10px;
         }
-
+ 
         .TextareaKapsayici {
             width: 424px; 
             margin: 0 auto;
             text-align: left; 
             position: relative; 
         }
-
+ 
         textarea {
             width: 400px;
             height: 120px;
@@ -87,11 +87,11 @@
         textarea:focus {
             border-color: #007acc;
         }
-
+ 
         textarea.jojoMidHali, textarea.kufurHali {
             border-color: #ff3333 !important;
         }
-
+ 
         .KufurUyariYazisi {
             color: #ff3333;
             font-size: 13px;
@@ -101,8 +101,7 @@
             display: none; 
             font-family: inherit;
         }
-
-        /* Karakter Sayacı Genel Stili */
+ 
         .KarakterSayaci {
             position: absolute;
             bottom: -22px; 
@@ -115,15 +114,13 @@
             flex-direction: column;
             align-items: center; 
         }
-
-        /* 67 Karakter Durumu İçin Özel Stil */
+ 
         .sayac67 {
             color: #007acc !important;
             text-decoration: underline !important;
             cursor: pointer;
         }
-
-        /* Baloncuğu tam 67 sayısının merkezine ortalayan konumlandırma */
+ 
         .SayacBaloncuk {
             position: absolute;
             bottom: 24px; 
@@ -142,8 +139,7 @@
             z-index: 10;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-
-        /* Baloncuğun altındaki üçgen */
+ 
         .SayacBaloncuk::after {
             content: "";
             position: absolute;
@@ -154,13 +150,12 @@
             border-style: solid;
             border-color: #333 transparent transparent transparent;
         }
-
-        /* Sadece sayac67 sınıfı varken hover olunca baloncuğu göster */
+ 
         .sayac67:hover .SayacBaloncuk {
             opacity: 1;
             transform: translateX(-50%) translateY(0); 
         }
-
+ 
         .ButonKutusu {
             margin-top: 25px; 
             height: 50px;
@@ -185,13 +180,13 @@
             background-color: #cccccc;
             cursor: not-allowed;
         }
-
+ 
         .ButonHata {
             background-color: #ff3333 !important;
             color: white !important;
             font-family: inherit !important;
         }
-
+ 
         @keyframes sallan {
             0% { transform: translateX(0); }
             20% { transform: translateX(-12px); }
@@ -200,12 +195,11 @@
             80% { transform: translateX(12px); }
             100% { transform: translateX(0); }
         }
-
+ 
         .sallaButonu {
             animation: sallan 0.15s ease-in-out;
         }
-
-        /* YANLIŞLIKLA SİLİNEN JOJO CSS KODLARI GERİ EKLENDİ */
+ 
         .jojoOverlay {
             position: fixed;
             top: 0;
@@ -218,7 +212,7 @@
             align-items: center;
             pointer-events: none;
         }
-
+ 
         .jojoYazisi {
             font-size: 32px;
             font-weight: bold;
@@ -227,26 +221,25 @@
             font-family: inherit;
             opacity: 0;
         }
-
+ 
         @keyframes jojoGiris {
             0% { transform: translateY(50px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
-
+ 
         @keyframes jojoCikis {
             0% { transform: translateY(0); opacity: 1; }
             100% { transform: translateY(0); opacity: 0; }
         }
-
+ 
         .jojoGirişEfekti {
             animation: jojoGiris 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-
+ 
         .jojoCıkışEfekti {
             animation: jojoCikis 0.8s ease forwards;
         }
-
-        /* InfoKutusu Flex Hizalamaları */
+ 
         .InfoKutusu {
             display: none;
             margin-top: 30px;
@@ -265,7 +258,7 @@
             justify-content: center;
             flex-wrap: nowrap;
         }
-
+ 
         .InfoSimgesi {
             display: inline-block;
             width: 22px;
@@ -280,7 +273,7 @@
             font-size: 14px;
             margin-right: 2px;
         }
-
+ 
         .KrisDansGif {
             height: 30px; 
             display: inline-block;
@@ -289,10 +282,10 @@
             margin-right: 4px;
             padding: 0;
             position: relative;
-            top: -2px; /* Kuzey yönü */
-            left: -4px; /* Batı yönü */
+            top: -2px;
+            left: -4px;
         }
-
+ 
         #dahaFazlaButonu {
             color: #005999;
             text-decoration: underline;
@@ -302,7 +295,7 @@
             vertical-align: middle;
             margin-left: -4px; 
         }
-
+ 
         .OzelAlertArkaplan {
             display: none;
             position: fixed;
@@ -315,7 +308,7 @@
             justify-content: center;
             align-items: center;
         }
-
+ 
         .OzelAlertKutusu {
             background-color: white;
             padding: 30px;
@@ -330,7 +323,7 @@
             transition: all 0.3s;
             position: relative;
         }
-
+ 
         .rockstarArkaplan {
             position: absolute;
             top: 50%;
@@ -354,13 +347,13 @@
             transition: opacity 0.3s ease;
             z-index: 1;
         }
-
+ 
         .rockstarArkaplan span {
             position: relative;
             top: -22px;
             left: -12px;
         }
-
+ 
         .rockstarYildiz {
             position: absolute;
             bottom: 22px;
@@ -384,7 +377,7 @@
             font-family: inherit; 
             z-index: 2; 
         }
-
+ 
         .MetniBuyut {
             font-size: 36px !important;
             font-weight: bold !important;
@@ -416,7 +409,7 @@
         .OzelAlertButon:hover {
             background-color: #005999;
         }
-
+ 
         .link-stil {
             font-weight: bold;
             color: #007acc;
@@ -426,13 +419,13 @@
     </style>
 </head>
 <body>
-
+ 
     <div id="anaIcerik" class="siteyiBlurla">
         <div class="FontSeciciAlani">
             <button id="btnCalibri" class="FontButon secili" onclick="fontDegistir('calibri')">calibri</button>
-            <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunmasi zor, tavsiye edilmez ogitmez de zaten... ve mobilde calismaz)</button>
+            <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunması zor, tavsiye edilmez ve mobilde çalışmaz)</button>
         </div>
-
+ 
         <h1>BOŞLUĞA MESAJ GÖNDER</h1>
         
         <div class="AciklamaYazisi">bosluga mesaj gondermek icin asagiya mesajini yaz!</div>
@@ -450,7 +443,7 @@
         <div class="ButonKutusu">
             <button id="aksiyonButonu" class="MaviButon" onclick="hichligeGonder()">bosluga gonder</button>
         </div>
-
+ 
         <div id="infoSonuc" class="InfoKutusu">
             <span class="InfoSimgesi">i</span>
             <span class="InfoKutusuIcerik">
@@ -460,7 +453,7 @@
             </span>
         </div>
     </div>
-
+ 
     <div id="gizemliAlert" class="OzelAlertArkaplan">
         <div class="OzelAlertKutusu">
             <div id="rockstarLogo" class="rockstarArkaplan">
@@ -471,18 +464,18 @@
             <div id="alertButonAlani" class="AlertButonAlani"></div>
         </div>
     </div>
-
+ 
     <div id="jojoKatmani" class="jojoOverlay">
         <div id="jojoYaziMetni" class="jojoYazisi">Bu sözler boşluğa gidemeyecek kadar doğru...</div>
     </div>
-
+ 
     <script>
         var zaferSesi = new Audio("robloxvictory.mp3");
         var tiklamaSayisi = 0; 
         var eggyTetiklendi = false; 
         var hataZamanlayici = null; 
         var gonderiliyorMu = false; 
-
+ 
         window.onload = function() {
             var metinKutusu = document.getElementById("alertMetinAlani");
             var butonKutusu = document.getElementById("alertButonAlani");
@@ -505,39 +498,39 @@
             
             document.getElementById("gizemliAlert").style.display = "flex";
         };
-
+ 
         function jojoMidKontrolEt(metin) {
             var temizMetin = metin.trim();
             var regex = /^jojo\s+[mıidMİID][ıidMİID][dD]$/i;
             return regex.test(temizMetin);
         }
-
+ 
         function sayacGuncelle() {
             var textarea = document.getElementById("mesajAlani");
             var icerik = textarea.value;
             var sayacKonteynir = document.getElementById("sayacAlani");
             var rakamAlani = document.getElementById("sayacRakam");
             var uzunluk = icerik.length;
-
+ 
             if (uzunluk === 31) {
                 rakamAlani.innerHTML = "31 XD";
             } else {
                 rakamAlani.innerHTML = uzunluk;
             }
-
+ 
             if (uzunluk === 67) {
                 sayacKonteynir.classList.add("sayac67");
             } else {
                 sayacKonteynir.classList.remove("sayac67");
             }
-
+ 
             if (jojoMidKontrolEt(icerik)) {
                 textarea.classList.add("jojoMidHali");
             } else {
                 textarea.classList.remove("jojoMidHali");
             }
         }
-
+ 
         function rockstarGoster(durum) {
             var logo = document.getElementById("rockstarLogo");
             if(durum) {
@@ -546,16 +539,16 @@
                 logo.style.opacity = "0";
             }
         }
-
+ 
         function siteyiBaslat() {
             document.getElementById("gizemliAlert").style.display = "none";
             document.getElementById("anaIcerik").classList.remove("siteyiBlurla");
         }
-
+ 
         function fontDegistir(fontAdi) {
             var btnCalibri = document.getElementById("btnCalibri");
             var btnComic = document.getElementById("btnComic");
-
+ 
             if (fontAdi === 'calibri') {
                 document.body.style.fontFamily = "'Calibri', sans-serif";
                 btnCalibri.className = "FontButon secili";
@@ -566,19 +559,19 @@
                 btnComic.className = "FontButon secili";
             }
         }
-
+ 
         function sabirsizlikKorumasi(event) {
             if (gonderiliyorMu) {
                 event.preventDefault(); 
-
+ 
                 var textarea = document.getElementById("mesajAlani");
                 var uyari = document.getElementById("sabirsizlikUyari");
-
+ 
                 textarea.classList.add("kufurHali");
                 uyari.style.display = "block";
             }
         }
-
+ 
         function hichligeGonder() {
             var textareaIcerik = document.getElementById("mesajAlani").value;
             var buton = document.getElementById("aksiyonButonu");
@@ -591,75 +584,75 @@
                 }
                 buton.classList.remove("ButonHata", "sallaButonu");
                 buton.innerHTML = "bosluga gonder";
-
+ 
                 var anaIcerik = document.getElementById("anaIcerik");
                 var jojoKatmani = document.getElementById("jojoKatmani");
                 var jojoYaziMetni = document.getElementById("jojoYaziMetni");
-
+ 
                 anaIcerik.classList.add("siteyiBlurla");
                 
                 jojoKatmani.style.display = "flex";
                 jojoYaziMetni.classList.remove("jojoCıkışEfekti");
                 jojoYaziMetni.classList.add("jojoGirişEfekti");
-
+ 
                 document.getElementById("mesajAlani").value = "";
                 sayacGuncelle();
-
+ 
                 setTimeout(function() {
                     jojoYaziMetni.classList.remove("jojoGirişEfekti");
                     jojoYaziMetni.classList.add("jojoCıkışEfekti");
                 }, 2500);
-
+ 
                 setTimeout(function() {
                     anaIcerik.classList.remove("siteyiBlurla");
                     jojoKatmani.style.display = "none";
                     jojoYaziMetni.classList.remove("jojoCıkışEfekti");
                 }, 3300);
-
+ 
                 return; 
             }
-
+ 
             if(jojoMidKontrolEt(textareaIcerik)) {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
                 }
-
+ 
                 buton.classList.remove("sallaButonu");
                 void buton.offsetWidth; 
                 buton.classList.add("sallaButonu");
-
+ 
                 buton.classList.add("ButonHata");
                 buton.innerHTML = "hayir";
-
+ 
                 hataZamanlayici = setTimeout(function() {
                     buton.classList.remove("ButonHata");
                     buton.classList.remove("sallaButonu");
                     buton.innerHTML = "bosluga gonder";
                     hataZamanlayici = null;
                 }, 1000);
-
+ 
                 return;
             }
-
+ 
             if(textareaIcerik.trim() === "") {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
                 }
-
+ 
                 buton.classList.remove("sallaButonu");
                 void buton.offsetWidth; 
                 buton.classList.add("sallaButonu");
-
+ 
                 buton.classList.add("ButonHata");
                 buton.innerHTML = "bi sey yaz";
-
+ 
                 hataZamanlayici = setTimeout(function() {
                     buton.classList.remove("ButonHata");
                     buton.classList.remove("sallaButonu");
                     buton.innerHTML = "bosluga gonder";
                     hataZamanlayici = null;
                 }, 1000);
-
+ 
                 return;
             }
             
@@ -668,7 +661,7 @@
                 hataZamanlayici = null;
             }
             buton.classList.remove("ButonHata", "sallaButonu");
-
+ 
             infoKutu.style.display = "none";
             buton.disabled = true;
             gonderiliyorMu = true; 
@@ -706,7 +699,7 @@
                 buton.disabled = false;
             }, 5000);
         }
-
+ 
         function dahaFazlaTiklandi() {
             if(eggyTetiklendi) return; 
             
@@ -723,12 +716,12 @@
             
             document.getElementById("gizemliAlert").style.display = "flex";
             document.getElementById("anaIcerik").classList.add("siteyiBlurla");
-
+ 
             if (tiklamaSayisi === 10) {
                 eggyTetiklendi = true; 
                 document.getElementById("dahaFazlaButonu").style.display = "none";
-
-                metinKutusu.innerHTML = "İnternetin o sonsuz dehlizlerinde, veri tabanlarının loş ışıklı koridorlarında ya da uyduların o havalı sinyal kulelerinde bu mesajı arama. Çünkü o mesaj şu an tam olarak olması gereken yerde: Kocaman bir hiçlikte.<br><br>Sen o butona bastığın an, klavyenden dökülen o harfler ne bir sunucuya yüklendi, ne bir yerlerine kaydedildi, ne de dünyanın öbür ucundaki bir insanın ekranına bildirim olarak düştü. JavaScript kodunun o acımasız satırları, sen daha 'gönderildi!' yazısını görüp arkadan o nostaljik Roblox zafer sesini duyduğun o salisede, mesajını aldı ve tarayıcının geçici hafızasından sonsuza dek sildi.<br><br>Yani ne bir siber permanent uzmanı, ne bir veri analisti, ne de bir hacker senin buraya ne yazdığını asla öğrenemeyecek. Yazdığın o gizli itiraflar, iç döküşler, sinirlenip karaladığın cümleler ya da sadece can syntaxından salladığın kelimeler... Hepsi saniyeler içinde dijital bir toza dönüştü ve evrenin o mutlak sessizliğine karıştı.<br><br>İşin güzel tarafı da bu ya zaten. Bu site sana kimsenin seni dinlemediği, kimsenin seni yargılamayacağı ve yazdıklarının arkanda hiçbir iz bırakmayacağı o mutlak özgürlük alanını sunuyor. Mesajın hiçbir yere gitmedi, gitmeyecek ogitmez de zaten... Boşluk sır tutmayı çok iyi bilir.";
+ 
+                metinKutusu.innerHTML = "İnternetin o sonsuz dehlizlerinde, veri tabanlarının loş ışıklı koridorlarında ya da uyduların o havalı sinyal kulelerinde bu mesajı arama. Çünkü o mesaj şu an tam olarak olması gereken yerde: Kocaman bir hiçlikte.<br><br>Sen o butona bastığın an, klavyenden dökülen o harfler ne bir sunucuya yüklendi, ne bir yerlerine kaydedildi, ne de dünyanın öbür ucundaki bir insanın ekranına bildirim olarak düştü. JavaScript kodunun o acımasız satırları, sen daha 'gönderildi!' yazısını görüp arkadan o nostaljik Roblox zafer sesini duyduğun o salisede, mesajını aldı ve tarayıcının geçici hafızasından sonsuza dek sildi.<br><br>Yani ne bir siber permanent uzmanı, ne bir veri analisti, ne de bir hacker senin buraya ne yazdığını asla öğrenemeyecek. Yazdığın o gizli itiraflar, iç döküşler, sinirlenip karaladığın cümleler ya da sadece can syntaxından salladığın kelimeler... Hepsi saniyeler içinde dijital bir toza dönüştü ve evrenin o mutlak sessizliğine karıştı.<br><br>İşin güzel tarafı da bu ya zaten. Bu site sana kimsenin seni dinlemediği, kimsenin seni yargılamayacağı ve yazdıklarının arkanda hiçbir iz bırakmayacağı o mutlak özgürlük alanını sunuyor. Mesajın hiçbir yere gitmedi, gitmeyecek gitmez de zaten... Boşluk sır tutmayı çok iyi bilir.";
                 
                 butonKutusu.innerHTML = `
                     <button class="OzelAlertButon" onclick="kapatAlert()">hee simdi anladim</button>
@@ -739,27 +732,27 @@
                 butonKutusu.innerHTML = `<button class="OzelAlertButon" onclick="kapatAlert()">tamam ya ne kiziyon</button>`;
             }
         }
-
+ 
         function kapatAlert() {
             document.getElementById("gizemliAlert").style.display = "none";
             document.getElementById("anaIcerik").classList.remove("siteyiBlurla");
         }
-
+ 
         function birazDahaAnlat() {
             var metinKutusu = document.getElementById("alertMetinAlani");
             var butonKutusu = document.getElementById("alertButonAlani");
-
+ 
             butonKutusu.innerHTML = ""; 
             metinKutusu.innerHTML = "...";
             metinKutusu.style.textAlign = "center";
             metinKutusu.classList.add("MetniBuyut");
-
+ 
             setTimeout(function() {
                 metinKutusu.innerHTML = ""; 
                 
                 var harfler = ["H", "A", "Y", "I", "R"];
                 var mevcutMetin = "";
-
+ 
                 harfler.forEach(function(harf, index) {
                     setTimeout(function() {
                         if (index === 0) {
@@ -768,7 +761,7 @@
                             mevcutMetin += " " + harf;
                         }
                         metinKutusu.innerHTML = mevcutMetin;
-
+ 
                         if (index === harfler.length - 1) {
                             setTimeout(function() {
                                 butonKutusu.innerHTML = `<button class="OzelAlertButon" onclick="kapatAlert()">susuyorum...</button>`;
@@ -776,10 +769,11 @@
                         }
                     }, index * 1500); 
                 });
-
+ 
             }, 2000); 
         }
     </script>
-
+ 
 </body>
 </html>
+ 
