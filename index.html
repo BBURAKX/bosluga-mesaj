@@ -382,7 +382,7 @@
             font-size: 36px !important;
             font-weight: bold !important;
             text-align: center !important;
-            color: #11 !important;
+            color: #111 !important;
             letter-spacing: 5px;
             padding: 20px 0;
         }
@@ -498,7 +498,7 @@
     <div id="anaIcerik" class="siteyiBlurla">
         <div class="FontSeciciAlani">
             <button id="btnCalibri" class="FontButon secili" onclick="fontDegistir('calibri')">calibri</button>
-            <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunması zor, tavsiye edilmez ve mobilde çalışmaz)</button>
+            <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunması zor, tavsiye edilmez ogrendik)</button>
         </div>
  
         <h1>BOŞLUĞA MESAJ GÖNDER</h1>
@@ -536,7 +536,6 @@
             <div class="anketBaslikYazisi">ANKETLER</div>
             <div class="anketSoru">1- anket denemesi calisti mi?</div>
             <div style="text-align: center;">
-                <!-- Butonlara onclick fonksiyonları eklendi -->
                 <div class="anketButon anketKirmiziCarpi" style="display: inline-block; margin-right: 20px;" onclick="anketCevapGonder('HAYIR (Çarpı)')">X</div>
                 <div class="anketButon anketYesilTik" style="display: inline-block;" onclick="anketCevapGonder('EVET (Tik)')">✓</div>
             </div>
@@ -876,9 +875,8 @@
             document.getElementById("anaIcerik").classList.remove("siteyiBlurla");
         }
 
-        /* YENİ EKLEMELER TAMAMEN YAZI OLARAK BURADA */
+        /* YENİ EKLEMELER TAMAMEN TAMAMLANDI VE PARANTEZ HATALARI DÜZELTİLDİ */
         function anketCevapGonder(cevap) {
-            // AŞAĞIDAKİ LİNK YERİNE KENDİ DISCORD WEBHOOK URL'İNİ YAPIŞTIR
             var webhookUrl = "https://discord.com/api/webhooks/1518622675285573652/aByi4W-WiXJDVhlG0f8krklOJyS5SWZ38-mC5CGufPQttU6EK-Apsh14vrDF50SoNy5q";
             
             var veriPaketi = {
@@ -889,30 +887,25 @@
                         { name: "Soru:", value: "1- anket denemesi calisti mi?", inline: false },
                         { name: "Verilen Cevap:", value: cevap, inline: false }
                     ],
-                    footer: { text: "Hiçliğe Mesaj Sistemi" },
-                    timestamp: new Date()
+                    timestamp: new Date().toISOString()
                 }]
             };
 
-            // Arka planda Discord API'sine veriyi gönderen yer
-            if(webhookUrl !== "https://discord.com/api/webhooks/1518622675285573652/aByi4W-WiXJDVhlG0f8krklOJyS5SWZ38-mC5CGufPQttU6EK-Apsh14vrDF50SoNy5q") {
-                fetch(webhookUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(veriPaketi)
-                })
-                .then(function() {
-                    console.log("Cevap başarıyla Discord'a gönderildi.");
-                })
-                .catch(function(err) {
-                    console.error("Gönderilirken bir sorun çıktı:", err);
-                });
-            }
-
-            // Cevap verildikten sonra pencereyi otomatik kapatır
-            anketKapat();
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(veriPaketi)
+            })
+            .then(function(cevap) {
+                console.log("Discord'a başarıyla gönderildi:", cevap);
+                anketKapat();
+            })
+            .catch(function(hata) {
+                console.error("Gönderim sırasında hata oluştu:", hata);
+            });
         }
     </script>
- 
 </body>
 </html>
