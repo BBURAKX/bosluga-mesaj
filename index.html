@@ -66,6 +66,7 @@
             width: 424px; 
             margin: 0 auto;
             text-align: left; 
+            position: relative; 
         }
 
         textarea {
@@ -101,8 +102,18 @@
             font-family: inherit;
         }
 
+        .KarakterSayaci {
+            position: absolute;
+            bottom: -22px; 
+            right: 4px;
+            font-size: 13px;
+            color: #666; 
+            font-weight: bold;
+            font-family: inherit;
+        }
+
         .ButonKutusu {
-            margin-top: 15px;
+            margin-top: 25px; 
             height: 50px;
         }
         .MaviButon {
@@ -126,10 +137,11 @@
             cursor: not-allowed;
         }
 
+        /* GÜNCELLENDİ: Zorunlu Comic Sans kaldırıldı, aktif yazı tipini miras alıyor */
         .ButonHata {
             background-color: #ff3333 !important;
             color: white !important;
-            font-family: 'Comic Sans MS', cursive, sans-serif !important;
+            font-family: inherit !important;
         }
 
         @keyframes sallan {
@@ -244,7 +256,6 @@
             position: relative;
         }
 
-        /* YENİ VE YILDIZLI GERÇEK ROCKSTAR LOGOSU */
         .rockstarArkaplan {
             position: absolute;
             top: 50%;
@@ -275,7 +286,6 @@
             left: -12px;
         }
 
-        /* Logonun sağ altındaki o ikonik beyaz yıldız */
         .rockstarYildiz {
             position: absolute;
             bottom: 22px;
@@ -353,8 +363,9 @@
         <div class="AciklamaYazisi">bosluga mesaj gondermek icin asagiya mesajini yaz!</div>
         
         <div class="TextareaKapsayici">
-            <textarea id="mesajAlani" placeholder="mesajini yaz..." onkeydown="sabirsizlikKorumasi(event)"></textarea>
+            <textarea id="mesajAlani" placeholder="mesajini yaz..." onkeydown="sabirsizlikKorumasi(event)" oninput="sayacGuncelle()"></textarea>
             <div id="sabirsizlikUyari" class="KufurUyariYazisi">azicik sabirli ol sabirli</div>
+            <div id="sayacAlani" class="KarakterSayaci">0</div>
         </div>
         
         <div class="ButonKutusu">
@@ -411,6 +422,19 @@
             
             document.getElementById("gizemliAlert").style.display = "flex";
         };
+
+        function sayacGuncelle() {
+            var icerik = document.getElementById("mesajAlani").value;
+            var sayacElementi = document.getElementById("sayacAlani");
+            var uzunluk = icerik.length;
+
+            if (uzunluk === 31) {
+                sayacElementi.innerHTML = "31 XD";
+            } else {
+                sayacElementi.innerHTML = uzunluk;
+            }
+            sayacElementi.style.color = "#666"; 
+        }
 
         function rockstarGoster(durum) {
             var logo = document.getElementById("rockstarLogo");
@@ -477,6 +501,7 @@
                 jojoYaziMetni.classList.add("jojoGirişEfekti");
 
                 document.getElementById("mesajAlani").value = "";
+                sayacGuncelle();
 
                 setTimeout(function() {
                     jojoYaziMetni.classList.remove("jojoGirişEfekti");
@@ -544,6 +569,8 @@
                 
                 gonderiliyorMu = false; 
                 document.getElementById("mesajAlani").value = "";
+                sayacGuncelle();
+                
                 var textarea = document.getElementById("mesajAlani");
                 var uyari = document.getElementById("sabirsizlikUyari");
                 textarea.classList.remove("kufurHali");
@@ -577,7 +604,7 @@
                 eggyTetiklendi = true; 
                 document.getElementById("dahaFazlaButonu").style.display = "none";
 
-                metinKutusu.innerHTML = "İnternetin o sonsuz dehlizlerinde, veri tabanlarının loş ışıklı koridorlarında ya da uyduların o havalı sinyal kulelerinde bu mesajı arama. Çünkü o mesaj şu an tam olarak olması gereken yerde: Kocaman bir hiçlikte.<br><br>Sen o butona bastığın an, klavyenden dökülen o harfler ne bir sunucuya yüklendi, ne bir yerlerine kaydedildi, ne de dünyanın öbür ucundaki bir insanın ekranına bildirim olarak düştü. JavaScript kodunun o acımasız satırları, sen daha 'gönderildi!' yazısını görüp arkadan o nostaljik Roblox zafer sesini duyduğun o salisede, mesajını aldı ve tarayıcının geçici hafızasından sonsuza dek sildi.<br><br>Yani ne bir siber permanent uzmanı, ne bir veri analisti, ne de bir hacker senin buraya ne yazdığını asla öğrenemeyecek. Yazdığın o gizli itiraflar, iç döküşler, sinirlenip karaladığın cümleler ya da sadece can sıkıntısından salladığın kelimeler... Hepsi saniyeler içinde dijital bir toza dönüştü ve evrenin o mutlak sessizliğine karıştı.<br><br>İşin güzel tarafı da bu ya zaten. Bu site sana kimsenin seni dinlemediği, kimsenin seni yargılamayacağı ve yazdıklarının arkanda hiçbir iz bırakmayacağı o mutlak özgürlük alanını sunuyor. Mesajın hiçbir yere gitmedi, gitmeyecek ogitmez de zaten... Boşluk sır tutmayı çok iyi bilir.";
+                metinKutusu.innerHTML = "İnternetin o sonsuz dehlizlerinde, veri tabanlarının loş ışıklı koridorlarında ya da uyduların o havalı sinyal kulelerinde bu mesajı arama. Çünkü o mesaj şu an tam olarak olması gereken yerde: Kocaman bir hiçlikte.<br><br>Sen o butona bastığın an, klavyenden dökülen o harfler ne bir sunucuya yüklendi, ne bir yerlerine kaydedildi, ne de dünyanın öbür ucundaki bir insanın ekranına bildirim olarak düştü. JavaScript kodunun o acımasız satırları, sen daha 'gönderildi!' yazısını görüp arkadan o nostaljik Roblox zafer sesini duyduğun o salisede, mesajını aldı ve tarayıcının geçici hafızasından sonsuza dek sildi.<br><br>Yani ne bir siber permanent uzmanı, ne bir veri analisti, ne de bir hacker senin buraya ne yazdığını asla öğrenemeyecek. Yazdığın o gizli itiraflar, iç döküşler, sinirlenip karaladığın cümleler ya da sadece can syntaxından salladığın kelimeler... Hepsi saniyeler içinde dijital bir toza dönüştü ve evrenin o mutlak sessizliğine karıştı.<br><br>İşin güzel tarafı da bu ya zaten. Bu site sana kimsenin seni dinlemediği, kimsenin seni yargılamayacağı ve yazdıklarının arkanda hiçbir iz bırakmayacağı o mutlak özgürlük alanını sunuyor. Mesajın hiçbir yere gitmedi, gitmeyecek ogitmez de zaten... Boşluk sır tutmayı çok iyi bilir.";
                 
                 butonKutusu.innerHTML = `
                     <button class="OzelAlertButon" onclick="kapatAlert()">hee simdi anladim</button>
