@@ -205,6 +205,7 @@
             animation: sallan 0.15s ease-in-out;
         }
 
+        /* YANLIŞLIKLA SİLİNEN JOJO CSS KODLARI GERİ EKLENDİ */
         .jojoOverlay {
             position: fixed;
             top: 0;
@@ -245,15 +246,26 @@
             animation: jojoCikis 0.8s ease forwards;
         }
 
+        /* InfoKutusu Flex Hizalamaları */
         .InfoKutusu {
             display: none;
             margin-top: 30px;
             justify-content: center;
             align-items: center;
+            align-content: center;
             gap: 10px;
             font-size: 18px;
             color: #005999;
+            line-height: 1;
         }
+        
+        .InfoKutusuIcerik {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
         .InfoSimgesi {
             display: inline-block;
             width: 22px;
@@ -266,14 +278,29 @@
             font-weight: bold;
             font-family: 'Georgia', serif;
             font-size: 14px;
+            margin-right: 2px;
+        }
+
+        .KrisDansGif {
+            height: 30px; 
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            margin-right: 4px;
+            padding: 0;
+            position: relative;
+            top: -2px; /* Kuzey yönü */
+            left: -4px; /* Batı yönü */
         }
 
         #dahaFazlaButonu {
             color: #005999;
             text-decoration: underline;
             cursor: pointer;
-            margin-left: 5px;
             font-weight: bold;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: -4px; 
         }
 
         .OzelAlertArkaplan {
@@ -362,7 +389,7 @@
             font-size: 36px !important;
             font-weight: bold !important;
             text-align: center !important;
-            color: #111 !important;
+            color: #11 !important;
             letter-spacing: 5px;
             padding: 20px 0;
         }
@@ -403,7 +430,7 @@
     <div id="anaIcerik" class="siteyiBlurla">
         <div class="FontSeciciAlani">
             <button id="btnCalibri" class="FontButon secili" onclick="fontDegistir('calibri')">calibri</button>
-            <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunmasi zor, tavsiye edilmez ve mobilde calismaz)</button>
+            <button id="btnComic" class="FontButon seciliDegil" onclick="fontDegistir('comic')">comic sans (okunmasi zor, tavsiye edilmez ogitmez de zaten... ve mobilde calismaz)</button>
         </div>
 
         <h1>BOŞLUĞA MESAJ GÖNDER</h1>
@@ -426,7 +453,11 @@
 
         <div id="infoSonuc" class="InfoKutusu">
             <span class="InfoSimgesi">i</span>
-            <span>tebrikler! hiclige bir mesaj gonderdiniz! mesajin hicbir yere ulasmayacak!!! <span id="dahaFazlaButonu" onclick="dahaFazlaTiklandi()">Daha fazla bilgi...</span></span>
+            <span class="InfoKutusuIcerik">
+                tebrikler! hiclige bir mesaj gonderdiniz! mesajin hicbir yere ulasmayacak!!! 
+                <img src="krisdance.gif" alt="Kris Dance" class="KrisDansGif"> 
+                <span id="dahaFazlaButonu" onclick="dahaFazlaTiklandi()">Daha fazla bilgi...</span>
+            </span>
         </div>
     </div>
 
@@ -475,10 +506,8 @@
             document.getElementById("gizemliAlert").style.display = "flex";
         };
 
-        // YENİ: Türkçe ve İngilizce büyük/küçük harf (i, ı, I, İ) farklarını tek merkezden algılayan fonksiyon
         function jojoMidKontrolEt(metin) {
             var temizMetin = metin.trim();
-            // jojo [mıid] varyasyonlarının tamamını yakalayan düzenli ifade (Regex)
             var regex = /^jojo\s+[mıidMİID][ıidMİID][dD]$/i;
             return regex.test(temizMetin);
         }
@@ -502,7 +531,6 @@
                 sayacKonteynir.classList.remove("sayac67");
             }
 
-            // GÜNCELLENDİ: Yeni jojo kontrol fonksiyonuna bağlandı
             if (jojoMidKontrolEt(icerik)) {
                 textarea.classList.add("jojoMidHali");
             } else {
@@ -556,7 +584,6 @@
             var buton = document.getElementById("aksiyonButonu");
             var infoKutu = document.getElementById("infoSonuc");
             
-            // Jojo Peak kontrolü
             if(textareaIcerik.trim().toLowerCase() === "jojo peak") {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
@@ -592,7 +619,6 @@
                 return; 
             }
 
-            // GÜNCELLENDİ: Büyük/küçük, ı/i harf esnekliğiyle Jojo Mid hata mekanizması
             if(jojoMidKontrolEt(textareaIcerik)) {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
@@ -615,7 +641,6 @@
                 return;
             }
 
-            // Boş bırakma kontrolü
             if(textareaIcerik.trim() === "") {
                 if (hataZamanlayici !== null) {
                     clearTimeout(hataZamanlayici);
